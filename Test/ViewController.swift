@@ -15,6 +15,14 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         print(productExceptSelf_238([1,2,3,4]))
         print(titleToNumber_171("AB"))
+        print(maxAreaOfIsland_695([[0,0,1,0,0,0,0,1,0,0,0,0,0],
+                                   [0,0,0,0,0,0,0,1,1,1,0,0,0],
+                                   [0,1,1,0,1,0,0,0,0,0,0,0,0],
+                                   [0,1,0,0,1,1,0,0,1,0,1,0,0],
+                                   [0,1,0,0,1,1,0,0,1,1,1,0,0],
+                                   [0,0,0,0,0,0,0,0,0,0,1,0,0],
+                                   [0,0,0,0,0,0,0,1,1,1,0,0,0],
+                                   [0,0,0,0,0,0,0,1,1,0,0,0,0]]))
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,6 +79,44 @@ class ViewController: UIViewController {
             numOf26 *= 26
         }
         return num
+    }
+    
+    func maxAreaOfIsland_695(_ grid: [[Int]]) -> Int {
+        var isAllZero : Bool = true
+        
+        var mark : Int = 0
+        
+        
+        var v : Int = 0
+        var h : Int = 0
+        var sumArr_horizontal : [Int] = []
+        var sumArr_vertical : [Int] = []
+        var sumArr : [Int] = []
+
+        for (index ,ele) in grid.enumerated() {
+            
+            for (index1 ,ele1) in ele.enumerated() {
+                
+                if index1 == 1 {
+                    isAllZero = false
+                }
+                h += ele1
+   
+
+                if index > 0 &&
+                    index == mark - index * ele.count {
+                    v += ele1
+                    sumArr_vertical.append(v)
+                }
+                
+                mark += 1
+            }
+            sumArr_horizontal.append(h)
+        }
+        if isAllZero {
+            return 0
+        }
+        return 0
     }
 
 }
