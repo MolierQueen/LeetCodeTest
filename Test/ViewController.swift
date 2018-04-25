@@ -15,14 +15,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         print(productExceptSelf_238([1,2,3,4]))
         print(titleToNumber_171("AB"))
-        print(maxAreaOfIsland_695([[0,0,1,0,0,0,0,1,0,0,0,0,0],
-                                   [0,0,0,0,0,0,0,1,1,1,0,0,0],
-                                   [0,1,1,0,1,0,0,0,0,0,0,0,0],
-                                   [0,1,0,0,1,1,0,0,1,0,1,0,0],
-                                   [0,1,0,0,1,1,0,0,1,1,1,0,0],
-                                   [0,0,0,0,0,0,0,0,0,0,1,0,0],
-                                   [0,0,0,0,0,0,0,1,1,1,0,0,0],
-                                   [0,0,0,0,0,0,0,1,1,0,0,0,0]]))
+        print(twoSum_001([3,3], 6))
     }
 
     override func didReceiveMemoryWarning() {
@@ -81,42 +74,27 @@ class ViewController: UIViewController {
         return num
     }
     
-    func maxAreaOfIsland_695(_ grid: [[Int]]) -> Int {
-        var isAllZero : Bool = true
+    func twoSum_001(_ nums: [Int], _ target: Int) -> [Int] {
         
-        var mark : Int = 0
+//        用字典来储存便利过的元素和下标（元素为Key  下标为Value），这样可以保证两点
+//        1：当前的下标和取出的下标肯定不会重复
+//        2：当前的下标一定要比取出的下标大
+//        
+//        使用字典和减法可以避免多次便利，降低时间复杂度，其实可以用content但是会增加复杂度
         
+        var dic : [Int : Int] = [:]
         
-        var v : Int = 0
-        var h : Int = 0
-        var sumArr_horizontal : [Int] = []
-        var sumArr_vertical : [Int] = []
-        var sumArr : [Int] = []
-
-        for (index ,ele) in grid.enumerated() {
-            
-            for (index1 ,ele1) in ele.enumerated() {
-                
-                if index1 == 1 {
-                    isAllZero = false
-                }
-                h += ele1
-   
-
-                if index > 0 &&
-                    index == mark - index * ele.count {
-                    v += ele1
-                    sumArr_vertical.append(v)
-                }
-                
-                mark += 1
+        var arrr : [Int] = []
+        for (currentIndex ,i) in nums.enumerated() {
+            if let index : Int = dic[target - i] {
+                arrr.append(index)
+                arrr.append(currentIndex)
+                return arrr
             }
-            sumArr_horizontal.append(h)
+            dic[i] = currentIndex
         }
-        if isAllZero {
-            return 0
-        }
-        return 0
+        
+        return arrr
     }
 
 }
