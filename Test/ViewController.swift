@@ -16,6 +16,7 @@ class ViewController: UIViewController {
         print(productExceptSelf_238([1,2,3,4]))
         print(titleToNumber_171("AB"))
         print(twoSum_001([3,3], 6))
+        print(countAndSay_038(4))
     }
 
     override func didReceiveMemoryWarning() {
@@ -95,6 +96,30 @@ class ViewController: UIViewController {
         }
         
         return arrr
+    }
+    
+    func countAndSay_038(_ n: Int) -> String {
+        var s = "1"
+
+        
+        for _ in 1 ..< n {
+            
+            var newS = ""
+            var count = 1
+            
+            for j in 1 ... s.count {
+                
+                if j == s.count || Array(s.unicodeScalars)[j-1] != Array(s.unicodeScalars)[j] {
+                    newS += "\(count)\(Array(s.unicodeScalars)[j-1])"
+                    count = 1
+                } else { count += 1 }
+                
+            }
+            
+            s = newS
+        }
+        
+        return s
     }
 
 }
